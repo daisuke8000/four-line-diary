@@ -7,11 +7,14 @@ type Props = {
     onClose: () => void;
     //onClose: VoidFunction;
     isOpen: boolean;
+    onClickHome: () => void;
+    onClickPost: () => void;
+    onClickPostUpdate: () => void;
 }
 
 export const MenuDrawer: VFC<Props> = memo((props) => {
 
-    const { onClose, isOpen } = props;
+    const { onClose, isOpen, onClickHome, onClickPost, onClickPostUpdate } = props;
 
     return (
         <Drawer placement='left' size="xs" onClose={onClose} isOpen={isOpen}>
@@ -26,6 +29,7 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
                             variant="ghost"
                             bg="yellow.50"
                             w="100%"
+                            onClick={onClickHome}
                         >
                             Top
                         </Button>
@@ -37,6 +41,7 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
                             variant="ghost"
                             bg="yellow.50"
                             w="100%"
+                            onClick={onClickPost}
                         >
                             Post
                         </Button>
@@ -48,6 +53,7 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
                             variant="ghost"
                             bg="yellow.50"
                             w="100%"
+                            onClick={onClickPostUpdate}
                         >
                             Update
                         </Button>

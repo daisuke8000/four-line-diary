@@ -12,8 +12,27 @@ export const Header: VFC = memo(() => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const history = useHistory();
-    //第二引数の配列に監視する変数を格納する。動的なものでなければ空でもOk
-    const onClickHome = useCallback(() => history.push("/home"), [history]);
+    //UseCallbackでは第二引数の配列に監視する変数を格納する。動的なものでなければ空でもOk
+    const onClickHome = useCallback(
+        () => {
+            history.push("/home")
+        },
+        [history],
+    );
+    const onClickPost = useCallback(
+        () => {
+            history.push("/home/post")
+        },
+        [history],
+    );
+    const onClickPostUpdate = useCallback(
+        () => {
+            history.push("/home/post-update")
+        },
+        [history],
+    );
+
+
 
     return (
         <>
@@ -25,8 +44,16 @@ export const Header: VFC = memo(() => {
                 justify="space-between"
                 padding={{ base: 3, md: 5 }}
             >
-                <Flex align="center" as="a" _hover={{ cursor: "pointer"}}>
-                    <Heading as="h1" mr={8} fontSize={{ base: "xl", md: "lg" }} onClick={onClickHome}>
+                <Flex
+                    align="center"
+                    as="a"
+                    _hover={{ cursor: "pointer"}}
+                >
+                    <Heading
+                        as="h1" mr={8}
+                        fontSize={{ base: "xl", md: "lg" }}
+                        onClick={onClickHome}
+                    >
                         four-line-diary
                     </Heading>
                 </Flex>
@@ -38,18 +65,23 @@ export const Header: VFC = memo(() => {
                     >
                         <Box pr={5}>
                             <Link>
-                                <PostIconButton/>
+                                <PostIconButton onClickPost={onClickPost}/>
                             </Link>
                         </Box>
                         <Box p5={5}>
                             <Link>
-                                <EditIconButton/>
+                                <EditIconButton onClickPostUpdate={onClickPostUpdate}/>
                             </Link>
                         </Box>
                     </Flex>
                 <MenuIconButton onOpen={onOpen}/>
             </Flex>
-            <MenuDrawer isOpen={isOpen} onClose={onClose} />
+            <MenuDrawer
+                isOpen={isOpen}
+                onClose={onClose}
+                onClickHome={onClickHome}
+                onClickPost={onClickPost}
+                onClickPostUpdate={onClickPostUpdate}/>
         </>
     );
 });
