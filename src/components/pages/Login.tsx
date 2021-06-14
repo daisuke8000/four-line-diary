@@ -2,6 +2,8 @@ import React, {memo, VFC, useState, ChangeEvent} from "react";
 import { Flex, Box, Heading, Divider, Input, Stack, Text } from "@chakra-ui/react";
 import { PrimaryButton } from "../atoms/PrimaryButton";
 import { SignUpButton } from "../atoms/SignUpButton";
+import backimage from "../../theme/Image/BackGround/sample.jpg";
+
 
 export const Login: VFC = memo(() => {
 
@@ -18,7 +20,7 @@ export const Login: VFC = memo(() => {
     }
 
     return (
-       <Flex align="center" justify="center" height="100vh">
+       <Flex align="center" justify="center" height="100vh" backgroundImage={backimage} backgroundSize="cover">
           <Box bg="orange.100" w="sm" p={5} borderRadius="md" shadow="md">
               { changeMode ?
                   <>
